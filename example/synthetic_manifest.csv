@@ -1,0 +1,5 @@
+﻿sample-id,absolute-filepath,direction
+A,${PWD}/plugins/CSV2QZA/example/A_R1.fastq,forward
+A,${PWD}/plugins/CSV2QZA/example/A_R2.fastq,reverse
+B,${PWD}/plugins/CSV2QZA/example/B_R1.fastq,forward
+B,${PWD}/plugins/CSV2QZA/example/B_R2.fastq,reverse

@@ -1,0 +1,2 @@
+Prefix plugins/CSV2QZA/example
+Plugin CSV2QZA inputfile synthetic_manifest.csv outputfile synthetic.qza
