@@ -1,0 +1,2 @@
+csvfile	synthetic_manifest.csv
+paired	1
