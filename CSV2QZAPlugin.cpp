@@ -5,6 +5,13 @@
 
 void CSV2QZAPlugin::input(std::string file) {
  inputfile = file;
+ std::ifstream infile(inputfile, std::ios::in);
+ std::string key, value;
+ while (!infile.eof()) {
+    infile >> key;
+    infile >> value;
+    parameters[key] = value;
+ }
 }
 
 void CSV2QZAPlugin::run() {
@@ -12,11 +19,15 @@ void CSV2QZAPlugin::run() {
 }
 
 void CSV2QZAPlugin::output(std::string file) { 
+ std::string prefix = std::string(PluginManager::prefix());
    std::string command = "export OLDPATH=${PATH}; ";
    command += "export PATH=${CONDA_HOME}/bin/:${PATH}; ";
    command += "eval \"$(conda shell.bash hook)\"; ";
    command += "conda activate qiime2-2021.4; ";
-   command += "qiime tools import --type \'SampleData[PairedEndSequencesWithQuality]\' --input-path "+inputfile+" --output-path "+file+" --input-format PairedEndFastqManifestPhred33; ";
+   if (parameters["paired"] == "1")
+   command += "qiime tools import --type \'SampleData[PairedEndSequencesWithQuality]\' --input-path "+prefix+"/"+parameters["csvfile"]+" --output-path "+file+" --input-format PairedEndFastqManifestPhred33; ";
+   else
+   command += "qiime tools import --type \'SampleData[SequencesWithQuality]\' --input-path "+prefix+"/"+parameters["csvfile"]+" --output-path "+file+" --input-format SingleEndFastqManifestPhred33V2; ";
 
 //qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \

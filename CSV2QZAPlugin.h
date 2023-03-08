@@ -5,6 +5,7 @@
 #include "PluginProxy.h"
 #include <string>
 #include <vector>
+#include <map>
 
 class CSV2QZAPlugin : public Plugin
 {
@@ -17,7 +18,7 @@ public:
 private: 
  std::string inputfile;
  std::string outputfile;
-
+ std::map<std::string, std::string> parameters;
 };
 
 #endif
